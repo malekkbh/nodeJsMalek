@@ -7,6 +7,7 @@ const StudentSchema = new Schema({
   id: Number,
 });
 
-const StudentModule = mongoose.model("StudentModule", StudentSchema);
+const StudentModule = 
+  mongoose.model("Student", StudentSchema);
 
 module.exports = StudentModule;

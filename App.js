@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const StudentModule = require("./modules/student.module");
+// const StudentModule = require("./modules/student.module");
 
 const app = express();
 app.use(express.json());
@@ -12,10 +13,12 @@ mongoose.connection.on("connected", () => {
   console.log("mongo connected");
 });
 
+
+
 app.get("/app", (req, res) => {
   res.status(200).json({
     message: "yes",
-    batat: "10kg",
+    batata: "5kg",
   });
 });
 
@@ -27,6 +30,8 @@ app.post("/creatNewStudent", (req, res) => {
     res.status(200).json({
       message: "done",
     });
+  }).catch(e=>{
+    res.status(500).json({message:'error'})
   });
 });
 
@@ -50,5 +55,12 @@ app.get("/getAllUsers",  (req, res) => {
       console.log("get all students error: ", e);
     });
 });
+
+app.post('/getUserByName' , (req , res) => {
+  StudentModule.find({name:req.body.name})
+  .then(students => {
+    res.status(200).json(students)
+  })
+})
 
 module.exports = app;
