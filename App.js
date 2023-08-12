@@ -1,66 +1,13 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const StudentModule = require("./modules/student.module");
-// const StudentModule = require("./modules/student.module");
-
-const app = express();
-app.use(express.json());
-
-const mongooseLink =
-  "mongodb+srv://malek:123456780@test.c38nkyc.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongooseLink);
-mongoose.connection.on("connected", () => {
-  console.log("mongo connected");
-});
-
-
-
-app.get("/app", (req, res) => {
-  res.status(200).json({
-    message: "yes",
-    batata: "5kg",
-  });
-});
-
-app.post("/creatNewStudent", (req, res) => {
-  StudentModule.create({
-    name: req.body.name,
-    id: req.body.id,
-  }).then((response) => {
-    res.status(200).json({
-      message: "done",
-    });
-  }).catch(e=>{
-    res.status(500).json({message:'error'})
-  });
-});
-
-app.get("/getAllUsers",  (req, res) => {
-  
-  // try {
-  //   const allUsers = await StudentModule.find();
-  // } catch (error) {
-  //   console.log("get all students error: ", e);
-  // }
-
-  StudentModule.find()
-    .then((stRes) => {
-      console.log("");
-      res.status(200).json({
-        message: "done",
-        users: stRes,
-      });
-    })
-    .catch((e) => {
-      console.log("get all students error: ", e);
-    });
-});
-
-app.post('/getUserByName' , (req , res) => {
-  StudentModule.find({name:req.body.name})
-  .then(students => {
-    res.status(200).json(students)
-  })
+import {View , StyleSheet} from 'react-native'
+const App = () => {
+  return (
+    <View style={styles.container}></View>
+  )
+}
+const styles = StyleSheet.creat({
+  container :{
+    flex: 1,
+    backgroundColor: 'red',
+  }
 })
-
-module.exports = app;
+export default App;
