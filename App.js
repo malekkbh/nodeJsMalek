@@ -36,13 +36,11 @@ app.post("/creatNewStudent", (req, res) => {
 });
 
 app.get("/getAllUsers",  (req, res) => {
-  
   // try {
   //   const allUsers = await StudentModule.find();
   // } catch (error) {
   //   console.log("get all students error: ", e);
   // }
-
   StudentModule.find()
     .then((stRes) => {
       console.log("");
@@ -53,6 +51,7 @@ app.get("/getAllUsers",  (req, res) => {
     })
     .catch((e) => {
       console.log("get all students error: ", e);
+      res.status(500).json({error: true , errorMessage: e})
     });
 });
 
