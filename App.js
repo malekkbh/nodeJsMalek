@@ -28,7 +28,7 @@ app.post("/creatNewStudent", (req, res) => {
     id: req.body.id,
   }).then((response) => {
     res.status(200).json({
-      message: "done",
+      message: "student added.",
     });
   }).catch(e=>{
     res.status(500).json({message:'error'})
@@ -61,4 +61,6 @@ app.post('/getUserByName' , (req , res) => {
     res.status(200).json(students)
   })
 })
-export default App;
+
+
+module.exports = app ;
