@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const StudentModule = require("./modules/student.module");
+const Route = require("./routs/Route");
 // const StudentModule = require("./modules/student.module");
 
 const app = express();
 app.use(express.json());
+app.use('/' , Route)
 
 const mongooseLink =
   "mongodb+srv://malek:123456780@test.c38nkyc.mongodb.net/?retryWrites=true&w=majority";
